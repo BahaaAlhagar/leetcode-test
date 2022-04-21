@@ -3,25 +3,19 @@
 class Solution
 {
     /**
-     * @param array $prices
+     * @param Integer[] $prices
      * @return Integer
      */
-    public function maxProfit(array $prices)
+    public function maxProfit($prices)
     {
-        if (count($prices) < 2) {
-            return 0;
-        }
-
+        $min = PHP_INT_MAX;
         $profit = 0;
-        $lastIndex = count($prices) - 1;
 
-        for ($i = 0; $i < $lastIndex; ++$i) {
-            if ($i === $lastIndex) {
-                continue;
-            }
-
-            for ($y = $i + 1; $y <= $lastIndex; ++$y) {
-                $profit = max($profit, $prices[$y] - $prices[$i]);
+        for ($i = 0; $i < count($prices); ++$i) {
+            if ($prices[$i] < $min) {
+                $min = $prices[$i];
+            } else {
+                $profit = max($profit, $prices[$i] - $min);
             }
         }
 
